@@ -1,0 +1,95 @@
+﻿@using bd_course.ViewModels
+@model bd_course.ViewModels.MyPlaylistViewModel
+
+@if (Model._isUpdate == IsUpdata.SongIsAdded)
+{
+    <div class="alert alert-success" role="alert">
+        <h4><strong>Song added!</strong> @Model.song.Title add to playlist.</h4>
+    </div>
+}
+else if (Model._isUpdate == IsUpdata.SongIsDeleted)
+{
+    <div class="alert alert-danger" role="alert">
+        <h4><strong>Song deleted!</strong> @Model.song.Title remove from playlist.</h4>
+    </div>
+}
+
+
+<div class="text-light site-heading">
+    <h2>The <font color="#19e68c">@Model.myPlaylist.Name</font></h2>
+</div>
+
+<div class="blog-area full-width">
+    <div class="container">
+        <div class="text-light">
+            <h1>THE DURATION OF MY PLAYLIST IS <font color="#19e68c">@Model.myPlaylist.Duration</font></h1>
+        </div>
+    <div class="container">
+
+        <div class="row">
+
+            <div class="text-light font-weight-bold">
+                <h2><b>THE <font color="#19e68c">SONGS</font> OF MY PLAYLIST</b></h2>
+            </div>
+
+            <div class="btn-group btn-group-lg btn-block col-md-offset-1" role="group" aria-label="Basic example">
+                <a class="btn btn-secondary bg-light col-md-2"
+                   asp-controller="MyPlaylist"
+                   asp-action="GetMyPlaylist"
+                   asp-route-sortOrder="@ViewBag.TitleSort">Title</a>
+                <a class="btn btn-secondary bg-light col-md-2"
+                   asp-controller="MyPlaylist"
+                   asp-action="GetMyPlaylist"
+                   asp-route-sortOrder="@ViewBag.AlbumSort">Album</a>
+                <a class="btn btn-secondary bg-light col-md-2"
+                   asp-controller="MyPlaylist"
+                   asp-action="GetMyPlaylist"
+                   asp-route-sortOrder="@ViewBag.GenreSort">Genre</a>
+                <a class="btn btn-secondary bg-light col-md-2"
+                   asp-controller="MyPlaylist"
+                   asp-action="GetMyPlaylist"
+                   asp-route-sortOrder="@ViewBag.DurationSort">Duration</a>
+                <a class="btn btn-secondary bg-light col-md-2"
+                   asp-controller="MyPlaylist"
+                   asp-action="GetMyPlaylist"
+                   asp-route-sortOrder="@ViewBag.ArtistNameSort">Artist</a>
+            </div>
+
+
+
+            <h1></h1>
+
+            <div class="blog-items">
+                @if (Model.mySongs.Count() == 0)
+                {
+                    <div class="col-md-4 col-md-offset-4 equal-height" style="height: 150px;">
+                        <div class="item">
+                            <div class="info">
+                                <h4> empty</h4>
+                                <p>There are no songs in the playlist</p>
+
+                                <div class="read-more">
+                                    <a asp-controller="Song"
+                                   asp-action="GetAllSongs"
+                                       class="more-btn">Add Song</a>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    foreach (Song song in Model.mySongs)
+                    {
+                        ViewBag.ArtistName = Model.artists.FirstOrDefault(elem => elem.Id == song.ArtistId).Name;
+
+                        ViewBag.RecordingStudioName = Model.recordingStudios.FirstOrDefault(elem => elem.Id == song.RecordingStudioId).Name;
+
+                        @Html.Partial("MyPlaylistSongs", song)
+                    }
+                }
+            </div>
+        </div>
+    </div>
+</div>

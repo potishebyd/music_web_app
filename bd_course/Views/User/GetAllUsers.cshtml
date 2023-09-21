@@ -1,0 +1,53 @@
+﻿@using bd_course.ViewModels
+@model bd_course.ViewModels.UserViewModel
+
+<div class="panel panel-default">
+    <table class="table table-bordered bg-light">
+        <thead>
+            <tr>
+                <td>
+                    <a asp-controller="User" asp-action="GetAllUsers" asp-route-sortOrder="@ViewBag.IdSort">
+                        <h3><font color="#19e68c">Id</font></h3>
+                    </a>
+                </td>
+                <td>
+                    <a asp-controller="User" asp-action="GetAllUsers" asp-route-sortOrder="@ViewBag.LoginSort">
+                        <h3><font color="#19e68c">Login</font></h3>
+                    </a>
+                </td>
+                <td>
+                    <a asp-controller="User" asp-action="GetAllUsers" asp-route-sortOrder="@ViewBag.EmailSort">
+                        <h3><font color="#19e68c">Email</font></h3>
+                    </a>
+                </td>
+                <td>
+                    <a asp-controller="User" asp-action="GetAllUsers" asp-route-sortOrder="@ViewBag.NamePlaylistSort">
+                        <h3><font color="#19e68c">Name Playlist</font></h3>
+                    </a>
+                </td>
+                <td>
+                    <a asp-controller="User" asp-action="GetAllUsers" asp-route-sortOrder="@ViewBag.PermissionSort">
+                        <h3><font color="#19e68c">Permission</font></h3>
+                    </a>
+                </td>
+                @if (User.IsInRole("admin"))
+                {
+                    <td>
+                        <a href="#">
+                            <h3><font color="#19e68c">Permission</font></h3>
+                        </a>
+                    </td>
+                }
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                foreach (User user in Model.users)
+                {
+                    ViewBag.NamePlaylist = Model.playlists.FirstOrDefault(elem => elem.UserId == user.Id).Name;
+                    @Html.Partial("ALLUsers", user)
+                }
+            }
+        </tbody>
+    </table>
+</div>

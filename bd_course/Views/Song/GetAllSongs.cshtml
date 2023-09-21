@@ -1,0 +1,144 @@
+﻿@using bd_course.ViewModels
+@model bd_course.ViewModels.SongViewModel
+
+<div class="panel panel-default">
+    <table class="table table-bordered bg-light">
+        <thead>
+            <tr>
+                <td>
+                    <a asp-controller="Song"
+                       asp-action="GetAllSongs"
+                       asp-route-sortOrder="@ViewBag.IdSort"
+                       asp-route-title="@Model.filterSongViewModel.title"
+                       asp-route-albumTitle="@Model.filterSongViewModel.albumTitle"
+                       asp-route-genre="@Model.filterSongViewModel.genre"
+                       asp-route-artistName="@Model.filterSongViewModel.artistName"
+                       asp-route-recordingStudioName="@Model.filterSongViewModel.recordingStudioName"
+                       asp-route-playlistId="@Model.filterSongViewModel.playlistId">
+                        <h3><font color="#19e68c">Id</font></h3>
+                    </a>
+                </td>
+                <td>
+                    <a asp-controller="Song"
+                       asp-action="GetAllSongs"
+                       asp-route-sortOrder="@ViewBag.TitleSort"
+                       asp-route-title="@Model.filterSongViewModel.title"
+                       asp-route-albumTitle="@Model.filterSongViewModel.albumTitle"
+                       asp-route-genre="@Model.filterSongViewModel.genre"
+                       asp-route-artistName="@Model.filterSongViewModel.artistName"
+                       asp-route-recordingStudioName="@Model.filterSongViewModel.recordingStudioName"
+                       asp-route-playlistId="@Model.filterSongViewModel.playlistId">
+                        <h3><font color="#19e68c">Title</font></h3>
+                    </a>
+                </td>
+
+                <td>
+                    <a asp-controller="Song"
+                       asp-action="GetAllSongs"
+                       asp-route-sortOrder="@ViewBag.AlbumSort"
+                       asp-route-title="@Model.filterSongViewModel.title"
+                       asp-route-albumTitle="@Model.filterSongViewModel.albumTitle"
+                       asp-route-genre="@Model.filterSongViewModel.genre"
+                       asp-route-artistName="@Model.filterSongViewModel.artistName"
+                       asp-route-recordingStudioName="@Model.filterSongViewModel.recordingStudioName"
+                       asp-route-playlistId="@Model.filterSongViewModel.playlistId">
+                        <h3><font color="#19e68c">Album</font></h3>
+                    </a>
+                </td>
+                <td>
+                    <a asp-controller="Song"
+                       asp-action="GetAllSongs"
+                       asp-route-sortOrder="@ViewBag.GenreSort"
+                       asp-route-title="@Model.filterSongViewModel.title"
+                       asp-route-albumTitle="@Model.filterSongViewModel.albumTitle"
+                       asp-route-genre="@Model.filterSongViewModel.genre"
+                       asp-route-artistName="@Model.filterSongViewModel.artistName"
+                       asp-route-recordingStudioName="@Model.filterSongViewModel.recordingStudioName"
+                       asp-route-playlistId="@Model.filterSongViewModel.playlistId">
+                        <h3><font color="#19e68c">Genre</font></h3>
+                    </a>
+                </td>
+                <td>
+                    <a asp-controller="Song"
+                       asp-action="GetAllSongs"
+                       asp-route-sortOrder="@ViewBag.DurationSort"
+                       asp-route-title="@Model.filterSongViewModel.title"
+                       asp-route-albumTitle="@Model.filterSongViewModel.albumTitle"
+                       asp-route-genre="@Model.filterSongViewModel.genre"
+                       asp-route-artistName="@Model.filterSongViewModel.artistName"
+                       asp-route-recordingStudioName="@Model.filterSongViewModel.recordingStudioName"
+                       asp-route-playlistId="@Model.filterSongViewModel.playlistId">
+                        <h3><font color="#19e68c">Duration</font></h3>
+                    </a>
+                </td>
+               <td>
+                    <a asp-controller="Song"
+                       asp-action="GetAllSongs"
+                       asp-route-sortOrder="@ViewBag.ArtistNameSort"
+                       asp-route-title="@Model.filterSongViewModel.title"
+                       asp-route-albumTitle="@Model.filterSongViewModel.albumTitle"
+                       asp-route-genre="@Model.filterSongViewModel.genre"
+                       asp-route-artistName="@Model.filterSongViewModel.artistName"
+                       asp-route-recordingStudioName="@Model.filterSongViewModel.recordingStudioName"
+                       asp-route-playlistId="@Model.filterSongViewModel.playlistId">
+                        <h3><font color="#19e68c">Artist</font></h3>
+                    </a>
+                </td>
+                <td>
+                    <a asp-controller="Song"
+                       asp-action="GetAllSongs"
+                       asp-route-sortOrder="@ViewBag.RecordingStudioNameSort"
+                       asp-route-title="@Model.filterSongViewModel.title"
+                       asp-route-albumTitle="@Model.filterSongViewModel.albumTitle"
+                       asp-route-genre="@Model.filterSongViewModel.genre"
+                       asp-route-artistName="@Model.filterSongViewModel.artistName"
+                       asp-route-recordingStudioName="@Model.filterSongViewModel.recordingStudioName"
+                       asp-route-playlistId="@Model.filterSongViewModel.playlistId">
+                        <h3><font color="#19e68c">Recording Studio</font></h3>
+                    </a>
+                </td>
+
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <td>
+                        <a href="#">
+                            <h3><font color="#19e68c">MyPlaylist</font></h3>
+                        </a>
+                    </td>
+                }
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                foreach (Song song in Model.songs)
+                {
+                    if (Model.filterSongViewModel.artistName == null)
+                        ViewBag.ArtistName = Model.artists.FirstOrDefault(a => a.Id == song.ArtistId).Name;
+                    else
+                        ViewBag.ArtistName = Model.filterSongViewModel.artistName;
+
+                    if (Model.filterSongViewModel.recordingStudioName == null)
+                        ViewBag.RecordingStudioName = Model.recordingStudios.FirstOrDefault(r => r.Id == song.RecordingStudioId).Name;
+                    else
+                        ViewBag.RecordingStudioName = Model.filterSongViewModel.recordingStudioName;
+
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        ViewBag.wasAdded = false;
+
+                        foreach (Song mySong in Model.mySongs)
+                        {
+                            if (mySong.Id == song.Id)
+                            {
+                                ViewBag.wasAdded = true;
+                                break;
+                            }
+                        }
+                    }
+
+                    @Html.Partial("ALLSongs", song)
+                }
+            }
+        </tbody>
+    </table>
+</div>

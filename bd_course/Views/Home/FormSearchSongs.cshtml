@@ -1,0 +1,91 @@
+﻿@using bd_course.ViewModels
+@model bd_course.ViewModels.HomeViewModel
+
+<form asp-action="Index"
+      asp-controller="Home"
+      asp-route-isAction="@IsAction.SearchSongs"
+      class="contact-form">
+
+    <div class="validation" asp-validation-summary="ModelOnly"></div>
+    <div>
+
+        <div class="col-md-12">
+            <div class="form-group">
+                <input class="form-control"
+                       placeholder="Title"
+                       asp-for="filterSongViewModel.title"
+                       type="text">
+
+                <span asp-validation-for="filterSongViewModel.title" />
+            </div>
+        </div>
+
+        <div class="col-md-12">
+            <div class="form-group">
+                <input class="form-control"
+                       placeholder="Album title"
+                       asp-for="filterSongViewModel.albumTitle"
+                       type="text">
+
+                <span asp-validation-for="filterSongViewModel.albumTitle" />
+            </div>
+        </div>
+
+        <div class="col-md-12">
+            <div class="form-group">
+                <input class="form-control"
+                       placeholder="Genre"
+                       asp-for="filterSongViewModel.genre"
+                       type="text">
+
+                <span asp-validation-for="filterSongViewModel.genre" />
+            </div>
+        </div>
+
+        <div class="col-md-12">
+            <div class="form-group">
+                <input class="form-control"
+                       placeholder="Artist name"
+                       asp-for="filterSongViewModel.artistName"
+                       type="text">
+
+                <span asp-validation-for="filterSongViewModel.artistName" />
+            </div>
+        </div>
+
+        <div class="col-md-12">
+            <div class="form-group">
+                <input class="form-control"
+                       placeholder="Recording studio name"
+                       asp-for="filterSongViewModel.recordingStudioName"
+                       type="text">
+
+                <span asp-validation-for="filterSongViewModel.recordingStudioName" />
+            </div>
+        </div>
+
+        @if (User.Identity.IsAuthenticated)
+        {
+            <div class="col-md-12">
+                <div class="form-group">
+                    <h4>Which songs to look for</h4>
+
+                    <select asp-for="filterSongViewModel.songSearch" class="form-control form-control-lg">
+                        <option value="AllSongs">All songs</option>
+                        <option value="MyPlaylistSongs">Songs from my playlist</option>
+                    </select>
+                </div>
+            </div>
+        }
+
+        <div class="col-md-12">
+            <div class="row">
+
+                <button type="submit">
+                    Find Songs
+                </button>
+            </div>
+        </div>
+
+    </div>
+</form>

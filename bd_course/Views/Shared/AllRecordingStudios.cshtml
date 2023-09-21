@@ -1,0 +1,15 @@
+﻿@using bd_course.ViewModels
+@model RecordingStudio
+<tr>
+    <th scope="row"><h3>@Model.Id</h3></th>
+    <td><h3>@Model.Name</h3></td>
+    <td><h3>@Model.Country</h3></td>
+    <td><h3>@Model.YearFounded</h3></td>
+    
+    <td>
+        <a class="btn btn-primary btn-block"
+           asp-controller="Song"
+           asp-action="GetAllSongs"
+           asp-route-recordingStudioName="@Model.Name">View Songs</a>
+    </td>
+</tr>

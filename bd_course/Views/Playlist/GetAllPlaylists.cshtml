@@ -1,0 +1,48 @@
+﻿@using bd_course.ViewModels
+@model bd_course.ViewModels.PlaylistViewModel
+
+<div class="panel panel-default">
+    <table class="table table-bordered bg-light">
+        <thead>
+            <tr>
+                <td>
+                    <a asp-controller="Playlist" asp-action="GetAllPlaylists" asp-route-sortOrder="@ViewBag.IdSort">
+                        <h3><font color="#19e68c">Id</font></h3>
+                    </a>
+                </td>
+                <td>
+                    <a asp-controller="Playlist" asp-action="GetAllPlaylists" asp-route-sortOrder="@ViewBag.NameSort">
+                        <h3><font color="#19e68c">Name</font></h3>
+                    </a>
+                </td>
+                <td>
+                    <a asp-controller="Playlist" asp-action="GetAllPlaylists" asp-route-sortOrder="@ViewBag.DurationSort">
+                        <h3><font color="#19e68c">Duration</font></h3>
+                    </a>
+                </td>
+                <td>
+                    <a asp-controller="Playlist" asp-action="GetAllPlaylists" asp-route-sortOrder="@ViewBag.CreationDateSort">
+                        <h3><font color="#19e68c">Creation date</font></h3>
+                    </a>
+                </td>
+
+                @if (User.IsInRole("admin"))
+                {
+                    <td>
+                        <a href="#">
+                            <h3><font color="#19e68c">Songs</font></h3>
+                        </a>
+                    </td>
+                }
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                foreach (Playlist playlist in Model.playlists)
+                {
+                    @Html.Partial("ALLPlaylists", playlist)
+                }
+            }
+        </tbody>
+    </table>
+</div>

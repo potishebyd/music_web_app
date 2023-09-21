@@ -1,0 +1,80 @@
+﻿@model bd_course.ViewModels.HomeViewModel
+
+@if (User.Identity.IsAuthenticated)
+{
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <div class="text-light site-heading">
+                <h2><font color="#19e68c">@User.Identity.Name! </font>It's time to update the playlist!</h2>
+            </div>
+        </div>
+    </div>
+}
+
+<div id="contact" class="contact-us-area default-padding text-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2 contact-form">
+                <h2>Selection of songs</h2style>
+
+                @Html.Partial("FormSearchSongs", Model)
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="contact" class="contact-us-area default-padding text-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2 contact-form">
+                <h2>Selection of artists</h2>
+
+                @Html.Partial("FormSearchArtists", Model)
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="contact" class="contact-us-area default-padding text-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2 contact-form">
+                <h2>Selection of recording studios</h2>
+
+                @Html.Partial("FormSearchRecordingStudios", Model)
+
+            </div>
+        </div>
+    </div>
+</div>
+
+@if (User.IsInRole("admin"))
+{
+    <div id="contact" class="contact-us-area default-padding text-light">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2 contact-form">
+                    <h2>Add new song</h2>
+
+                    @Html.Partial("FormAddSongs", Model)
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="contact" class="contact-us-area default-padding text-light">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2 contact-form">
+                    <h2>Delete song</h2>
+
+                    @Html.Partial("FormDeleteSongs", Model)
+
+                </div>
+            </div>
+        </div>
+    </div>
+}

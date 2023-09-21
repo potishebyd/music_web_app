@@ -1,0 +1,53 @@
+﻿@using bd_course.ViewModels
+@model bd_course.ViewModels.HomeViewModel
+
+<form asp-action="Index"
+      asp-controller="Home"
+      asp-route-isAction="@IsAction.SearchRecordingStudios"
+      class="contact-form">
+
+    <div class="validation" asp-validation-summary="ModelOnly"></div>
+    <div>
+        <div class="col-md-12">
+            <div class="form-group">
+                <input class="form-control"
+                       placeholder="Name"
+                       asp-for="filterRecordingStudioViewModel.name"
+                       type="text">
+
+            <span asp-validation-for="filterRecordingStudioViewModel.name" />
+            </div>
+        </div>
+
+        <div class="col-md-12">
+            <div class="form-group">
+                <input class="form-control"
+                       placeholder="Country"
+                   asp-for="filterRecordingStudioViewModel.country"
+                       type="text">
+
+            <span asp-validation-for="filterRecordingStudioViewModel.country" />
+            </div>
+        </div>
+
+        <div class="col-md-12">
+            <div class="form-group">
+                <input class="form-control"
+                       placeholder="Year Founded"
+                       asp-for="filterRecordingStudioViewModel.yearFounded"
+                       type="text">
+
+                <span asp-validation-for="filterRecordingStudioViewModel.yearFounded" />
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="row">
+
+                <button type="submit">
+                    Find recording studios
+                </button>
+            </div>
+        </div>
+
+    </div>
+</form>

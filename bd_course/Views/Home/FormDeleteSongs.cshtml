@@ -1,0 +1,78 @@
+﻿@using bd_course.ViewModels
+@model bd_course.ViewModels.HomeViewModel
+
+<form asp-action="Index"
+      asp-controller="Home"
+      asp-route-isAction="@IsAction.DeleteSong"
+      class="contact-form">
+
+    <div class="validation" asp-validation-summary="ModelOnly"></div>
+    <div>
+
+        <div class="col-md-12">
+            <div class="form-group">
+                <input class="form-control"
+                       placeholder="Title"
+                       asp-for="deleteSongViewModel.title"
+                       type="text">
+
+                <span asp-validation-for="deleteSongViewModel.title" />
+            </div>
+        </div>
+
+        <div class="col-md-12">
+            <div class="form-group">
+                <input class="form-control"
+                       placeholder="Album title"
+                       asp-for="deleteSongViewModel.albumTitle"
+                       type="text">
+
+                <span asp-validation-for="deleteSongViewModel.albumTitle" />
+            </div>
+        </div>
+
+        <div class="col-md-12">
+            <div class="form-group">
+                <input class="form-control"
+                       placeholder="Genre"
+                       asp-for="deleteSongViewModel.genre"
+                       type="text">
+
+                <span asp-validation-for="deleteSongViewModel.genre" />
+            </div>
+        </div>
+
+        <div class="col-md-12">
+            <div class="form-group">
+                <input class="form-control"
+                       placeholder="Artist name"
+                       asp-for="deleteSongViewModel.artistName"
+                       type="text">
+
+                <span asp-validation-for="deleteSongViewModel.artistName" />
+            </div>
+        </div>
+
+
+        <div class="col-md-12">
+            <div class="form-group">
+                <input class="form-control"
+                       placeholder="Recording studio name"
+                       asp-for="deleteSongViewModel.recordingStudioName"
+                       type="text">
+
+                <span asp-validation-for="deleteSongViewModel.recordingStudioName" />
+            </div>
+        </div>
+
+        <div class="col-md-12">
+            <div class="row">
+
+                <button type="submit">
+                    Delete song
+                </button>
+            </div>
+        </div>
+
+    </div>
+</form>

@@ -1,0 +1,19 @@
+﻿@using bd_course.ViewModels
+@model Playlist
+<tr>
+    <th scope="row"><h3>@Model.Id</h3></th>
+    <td><h3>@Model.Name</h3></td>
+    <td><h3>@Model.Duration</h3></td>
+    <td><h3>@Model.CreationDate</h3></td>
+
+    @if (User.IsInRole("admin"))
+    {
+        <td>
+            <a class="btn btn-primary btn-block"
+           asp-controller="Song"
+           asp-action="GetAllSongs"
+           asp-route-playlistId="@Model.Id">View Songs</a>
+        </td>
+    }
+
+</tr>

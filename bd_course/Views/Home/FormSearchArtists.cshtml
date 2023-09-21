@@ -1,0 +1,43 @@
+﻿@using bd_course.ViewModels
+@model bd_course.ViewModels.HomeViewModel
+
+<form asp-action="Index"
+      asp-controller="Home"
+      asp-route-isAction="@IsAction.SearchArtists"
+      class="contact-form">
+
+    <div class="validation" asp-validation-summary="ModelOnly"></div>
+    <div>
+        <div class="col-md-12">
+            <div class="form-group">
+                <input class="form-control"
+                       placeholder="Name"
+                       asp-for="filterArtistViewModel.name"
+                       type="text">
+
+                <span asp-validation-for="filterArtistViewModel.name" />
+            </div>
+        </div>
+
+        <div class="col-md-12">
+            <div class="form-group">
+                <input class="form-control"
+                       placeholder="Country"
+                       asp-for="filterArtistViewModel.country"
+                       type="text">
+
+                <span asp-validation-for="filterArtistViewModel.country" />
+            </div>
+        </div>
+
+        <div class="col-md-12">
+            <div class="row">
+
+                <button type="submit">
+                    Find artists
+                </button>
+            </div>
+        </div>
+
+    </div>
+</form>

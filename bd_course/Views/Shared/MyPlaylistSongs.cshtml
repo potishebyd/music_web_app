@@ -1,0 +1,24 @@
+﻿@using bd_course.ViewModels
+@model Song
+
+<div class="col-md-4 equal-height" style="height: 300px;">
+    <div class="item">
+        <div class="info">
+            <h4>@Model.Title</h4>
+            <p>@Model.AlbumTitle</p>
+            <p>@Model.Genre</p>
+            <h4><font color="#19e68c">@Model.Duration</font></h4>
+            <p>@ViewBag.ArtistName</p>
+            <p>@ViewBag.RecordingStudioName</p>
+
+            <div class="read-more">
+                <a asp-controller="MyPlaylist"
+                   asp-action="GetMyPlaylist"
+                   asp-route-isUpdate="@IsUpdata.SongIsDeleted"
+                   asp-route-songId="@Model.Id"
+                   class="more-btn">Delete</a>
+            </div>
+
+        </div>
+    </div>
+</div>

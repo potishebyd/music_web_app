@@ -1,0 +1,89 @@
+﻿@using bd_course.ViewModels
+@model bd_course.ViewModels.HomeViewModel
+
+<form asp-action="Index"
+      asp-controller="Home"
+      asp-route-isAction="@IsAction.AddSong"
+      class="contact-form">
+
+    <div class="validation" asp-validation-summary="ModelOnly"></div>
+    <div>
+
+        <div class="col-md-12">
+            <div class="form-group">
+                <input class="form-control"
+                       placeholder="Title"
+                       asp-for="addSongViewModel.title"
+                       type="text">
+
+                <span asp-validation-for="addSongViewModel.title" />
+            </div>
+        </div>
+
+        <div class="col-md-12">
+            <div class="form-group">
+                <input class="form-control"
+                       placeholder="Album title"
+                       asp-for="addSongViewModel.albumTitle"
+                       type="text">
+
+                <span asp-validation-for="addSongViewModel.albumTitle" />
+            </div>
+        </div>
+
+        <div class="col-md-12">
+            <div class="form-group">
+                <input class="form-control"
+                       placeholder="Duration"
+                       asp-for="addSongViewModel.duration"
+                       type="text">
+
+                <span asp-validation-for="addSongViewModel.duration" />
+            </div>
+        </div>
+
+        <div class="col-md-12">
+            <div class="form-group">
+                <input class="form-control"
+                       placeholder="Genre"
+                       asp-for="addSongViewModel.genre"
+                       type="text">
+
+                <span asp-validation-for="addSongViewModel.genre" />
+            </div>
+        </div>
+
+        <div class="col-md-12">
+            <div class="form-group">
+                <input class="form-control"
+                       placeholder="Artist name"
+                       asp-for="addSongViewModel.artistName"
+                       type="text">
+
+                <span asp-validation-for="addSongViewModel.artistName" />
+            </div>
+        </div>
+
+
+        <div class="col-md-12">
+            <div class="form-group">
+                <input class="form-control"
+                       placeholder="Recording studio name"
+                       asp-for="addSongViewModel.recordingStudioName"
+                       type="text">
+
+                <span asp-validation-for="addSongViewModel.recordingStudioName" />
+            </div>
+        </div>
+
+        <div class="col-md-12">
+            <div class="row">
+
+                <button type="submit">
+                    Add Song
+                </button>
+            </div>
+        </div>
+
+    </div>
+</form>

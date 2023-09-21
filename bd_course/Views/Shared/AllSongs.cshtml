@@ -1,0 +1,36 @@
+﻿@using bd_course.ViewModels
+@model Song
+<tr>
+    <th scope="row"><h3>@Model.Id</h3></th>
+    <td><h3>@Model.Title</h3></td>
+    <td><h3>@Model.AlbumTitle</h3></td>
+    <td><h3>@Model.Genre</h3></td>
+    <td><h3>@Model.Duration</h3></td>
+    <td><h3>@ViewBag.ArtistName</h3></td>
+    <td><h3>@ViewBag.RecordingStudioName</h3></td>
+
+    @if (User.Identity.IsAuthenticated)
+    {
+
+        @if (ViewBag.wasAdded == false)
+        {
+            <td>
+                <a class="btn btn-success btn-block"
+           asp-controller="MyPlaylist"
+           asp-action="GetMyPlaylist"
+           asp-route-isUpdate="@IsUpdata.SongIsAdded"
+           asp-route-songId="@Model.Id">Add song</a>
+            </td>
+        }
+        else
+        {
+            <td>
+                <a class="btn btn-danger btn-block"
+           asp-controller="MyPlaylist"
+           asp-action="GetMyPlaylist"
+           asp-route-isUpdate="@IsUpdata.SongIsDeleted"
+           asp-route-songId="@Model.Id">Delete song</a>
+            </td>
+        }
+    }
+</tr>

@@ -1,0 +1,60 @@
+﻿CREATE OR REPLACE FUNCTION getArtistsByName(name TEXT)
+RETURNS TABLE (
+	_artistId INTEGER,
+	_name TEXT,
+	_country TEXT
+)
+AS $$
+	 BEGIN
+		IF (name IS NOT NULL) THEN
+			RETURN QUERY
+			SELECT *
+			FROM public."Artists"
+			WHERE "Name" = name;
+		ELSE
+			RETURN QUERY
+			SELECT *
+			FROM public."Artists";
+		END IF;
+	END;
+ $$ LANGUAGE plpgsql;
+
+
+
+CREATE OR REPLACE FUNCTION getArtistsByCountry(country TEXT)
+RETURNS TABLE (
+	_artistId INTEGER,
+	_name TEXT,
+	_country TEXT
+)
+AS $$
+	 BEGIN
+		IF (country IS NOT NULL) THEN
+			RETURN QUERY
+			SELECT *
+			FROM public."Artists"
+			WHERE "Country" = country;
+		ELSE
+			RETURN QUERY
+			SELECT *
+			FROM public."Artists";
+		END IF;
+	END;
+ $$ LANGUAGE plpgsql;
+
+CREATE OR REPLACE FUNCTION getArtistsByParameters(_name TEXT, _country TEXT)
+RETURNS TABLE (
+	Id INTEGER,
+	Name TEXT,
+	Country TEXT
+)
+AS $$
+	BEGIN
+		RETURN QUERY
+			SELECT *
+			FROM getArtistsByName(_name)
+		INTERSECT
+			SELECT *
+			FROM getArtistsByCountry(_country)
+		END;
+$$ LANGUAGE plpgsql;

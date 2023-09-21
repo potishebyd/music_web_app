@@ -1,0 +1,61 @@
+﻿@using bd_course.ViewModels
+@model bd_course.ViewModels.RecordingStudioViewModel
+
+<div class="panel panel-default">
+    <table class="table table-bordered bg-light">
+        <thead>
+            <tr>
+                <td>
+                    <a asp-controller="RecordingStudio"
+                       asp-action="GetAllRecordingStudios"
+                       asp-route-sortOrder="@ViewBag.IdSort"
+                       asp-route-name="@Model.filterRecordingStudioViewModel.name"
+                       asp-route-country="@Model.filterRecordingStudioViewModel.country">
+                        <h3><font color="#19e68c">Id</font></h3>
+                    </a>
+                </td>
+                <td>
+                    <a asp-controller="RecordingStudio"
+                       asp-action="GetAllRecordingStudios"
+                       asp-route-sortOrder="@ViewBag.NameSort"
+                       asp-route-name="@Model.filterRecordingStudioViewModel.name"
+                       asp-route-country="@Model.filterRecordingStudioViewModel.country">
+                        <h3><font color="#19e68c">NameRecordingStudio</font></h3>
+                    </a>
+                </td>
+                <td>
+                    <a asp-controller="RecordingStudio"
+                       asp-action="GetAllRecordingStudios"
+                       asp-route-sortOrder="@ViewBag.CountrySort"
+                       asp-route-name="@Model.filterRecordingStudioViewModel.name"
+                       asp-route-country="@Model.filterRecordingStudioViewModel.country">
+                        <h3><font color="#19e68c">Country</font></h3>
+                    </a>
+                </td>
+                <td>
+                    <a asp-controller="RecordingStudio"
+                       asp-action="GetAllRecordingStudios"
+                       asp-route-sortOrder="@ViewBag.YearFoundedSort"
+                       asp-route-name="@Model.filterRecordingStudioViewModel.name"
+                       asp-route-country="@Model.filterRecordingStudioViewModel.country">
+                        <h3><font color="#19e68c">Year Founded</font></h3>
+                    </a>
+                </td>
+                <td>
+                    <a href="#">
+                        <h3><font color="#19e68c">Songs</font></h3>
+                    </a>
+                </td>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                foreach (RecordingStudio recordingStudio in Model.recordingStudios)
+                {
+                    if (recordingStudio.Id != null)
+                        @Html.Partial("AllRecordingStudios", recordingStudio)
+                }
+            }
+        </tbody>
+    </table>
+</div>
